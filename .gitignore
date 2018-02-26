@@ -1,0 +1,4 @@
+*.jpg
+*.npy
+experiments/all_one/train_summaries
+experiments/all_one/best_weights
