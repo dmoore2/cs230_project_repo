@@ -1,7 +1,36 @@
 """Create the input data pipeline using `tf.data`"""
 
 import tensorflow as tf
+import re
+import numpy as np
 
+
+NUM_CAMS = 4
+
+def fix_string(cam_num, filename):
+    try:
+        return filename
+#         new_path = re.sub('Camera1', 'Camera' + cam_num, str(filename))
+#         new_path = re.sub('CAM1', 'CAM' + cam_num, str(new_path))
+#         return tf.constant(new_path.decode('utf-8'))
+    except:
+        print("well fuk, here it comes:")
+        print(str(new_path))
+
+# def fix_string(cam_num, filename):
+#     try:
+#         new_path = filename.replace('Camera1', 'Camera2're.sub('Camera1', 'Camera' + cam_num, str(filename))
+#         new_path = re.sub('CAM1', 'CAM' + cam_num, str(new_path))
+#         return tf.constant(new_path.decode('utf-8'))
+#     except:
+#         print("well fuk, here it comes:")
+#         print(str(new_path))
+
+
+        
+    
+    
+    
 
 def _parse_function(filename, label, size):
     """Obtain the image from the filename (for both training and validation).
@@ -10,18 +39,32 @@ def _parse_function(filename, label, size):
         - Decode the image from jpeg format
         - Convert to float and to range [0, 1]
     """
-    print(filename)
-    print("filename is ^")
-    image_string = tf.read_file(filename)
-    # Don't use tf.image.decode_image, or the output shape will be undefined
-    image_decoded = tf.image.decode_jpeg(image_string, channels=3)
+#     print(filename)
+#     print("filename is ^")
+    image_output = None
+    for i in range(NUM_CAMS): 
+        #make path point to correct camera folder
+        new_path = tf.py_func(fix_string, [str(i + 1), filename], tf.string) 
+#         call fix_string with params i and filename on tf.py_func
+        
+        image_string = tf.read_file(new_path)
+        # Don't use tf.image.decode_image, or the output shape will be undefined
+        image_decoded = tf.image.decode_jpeg(image_string, channels=3)
 
-    # This will convert to float values in [0, 1]
-    image = tf.image.convert_image_dtype(image_decoded, tf.float32)
+        # This will convert to float values in [0, 1]
+        image = tf.image.convert_image_dtype(image_decoded, tf.float32)
 
-    resized_image = tf.image.resize_images(image, [size, size])
+        resized_image = tf.image.resize_images(image, [size, size])
+        
+        (size, size, 3)
+        if(image_output != None):
+            image_output = tf.concat([image_output, resized_image], axis=2)
+        else:
+            image_output = resized_image
+    
+        
 
-    return resized_image, label
+    return image_output, label
 
 
 def train_preprocess(image, label, use_random_flip):
@@ -31,19 +74,20 @@ def train_preprocess(image, label, use_random_flip):
         - Horizontally flip the image with probability 1/2
         - Apply random brightness and saturation
     """
-    if use_random_flip:
-        image = tf.image.random_flip_left_right(image)
-
-    image = tf.image.random_brightness(image, max_delta=32.0 / 255.0)
-    image = tf.image.random_saturation(image, lower=0.5, upper=1.5)
+#     if use_random_flip:
+#         image = tf.image.random_flip_left_right(image)
+    
+#     image = tf.image.random_brightness(image, max_delta=32.0 / 255.0)
+#     image = tf.image.random_saturation(image, lower=0.5, upper=1.5)
 
     # Make sure the image is still in [0, 1]
-    image = tf.clip_by_value(image, 0.0, 1.0)
+#     image = tf.clip_by_value(image, 0.0, 1.0)
 
     return image, label
 
 
 def input_fn(is_training, filenames, labels, params):
+   
     """Input function for the SIGNS dataset.
 
     The filenames have format "{label}_IMG_{id}.jpg".

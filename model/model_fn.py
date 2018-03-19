@@ -3,6 +3,7 @@
 import tensorflow as tf
 
 
+
 def build_model(is_training, inputs, params):
     """Compute logits of the model (output distribution)
 
@@ -17,7 +18,7 @@ def build_model(is_training, inputs, params):
     """
     images = inputs['images']
 
-    assert images.get_shape().as_list() == [None, params.image_size, params.image_size, 3]
+    assert images.get_shape().as_list() == [None, params.image_size, params.image_size, 3, 4]
 
     out = images
     # Define the number of channels of each convolution
