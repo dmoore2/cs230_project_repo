@@ -17,7 +17,8 @@ def build_model(is_training, inputs, params):
         output: (tf.Tensor) output of the model
     """
     images = inputs['images']
-
+    
+    
     assert images.get_shape().as_list() == [None, params.image_size, params.image_size, 3, 4]
 
     out = images

@@ -3,34 +3,10 @@
 import tensorflow as tf
 import re
 import numpy as np
-
+import os
 
 NUM_CAMS = 4
 
-def fix_string(cam_num, filename):
-    try:
-        return filename
-#         new_path = re.sub('Camera1', 'Camera' + cam_num, str(filename))
-#         new_path = re.sub('CAM1', 'CAM' + cam_num, str(new_path))
-#         return tf.constant(new_path.decode('utf-8'))
-    except:
-        print("well fuk, here it comes:")
-        print(str(new_path))
-
-# def fix_string(cam_num, filename):
-#     try:
-#         new_path = filename.replace('Camera1', 'Camera2're.sub('Camera1', 'Camera' + cam_num, str(filename))
-#         new_path = re.sub('CAM1', 'CAM' + cam_num, str(new_path))
-#         return tf.constant(new_path.decode('utf-8'))
-#     except:
-#         print("well fuk, here it comes:")
-#         print(str(new_path))
-
-
-        
-    
-    
-    
 
 def _parse_function(filename, label, size):
     """Obtain the image from the filename (for both training and validation).
@@ -43,8 +19,22 @@ def _parse_function(filename, label, size):
 #     print("filename is ^")
     image_output = None
     for i in range(NUM_CAMS): 
-        #make path point to correct camera folder
-        new_path = tf.py_func(fix_string, [str(i + 1), filename], tf.string) 
+        fileBase = 'data/JDP/CS230_Visuomotor_Learning/parser/TeleOpVRSession_2018-03-07_14-38-06_Camera' + str(i + 1) + '/'
+        fileBase = tf.constant(fileBase)
+#         split_filenames = tf.string_split([filename], 'CAM1')
+#         for idx in split_filenames.indicies():
+#             filenames_arr.append(split_filenames[idx])
+#         print('printing split filenames shape')
+#         print(split_filenames.shape)
+        filename_part_one = tf.substr(filename, 0, 40)
+        filename_part_two = tf.substr(filename, 41, -1)
+#         new_path = fileBase + split_filenames.values[0] + tf.constant('CAM' + str(i + 1)) + split_filenames.values[1]
+        new_path = fileBase + filename_part_one + tf.constant(str(i + 1)) + filename_part_two
+#         new_path = split_filenames.values[0]
+#         print('what is this?')
+#         print(final_filename)
+        # make path point to correct camera folder
+#         new_path = tf.py_func(fix_string, [str(i + 1), filename], tf.string) 
 #         call fix_string with params i and filename on tf.py_func
         
         image_string = tf.read_file(new_path)
@@ -56,7 +46,7 @@ def _parse_function(filename, label, size):
 
         resized_image = tf.image.resize_images(image, [size, size])
         
-        (size, size, 3)
+#         (size, size, 3)
         if(image_output != None):
             image_output = tf.concat([image_output, resized_image], axis=2)
         else:
@@ -74,16 +64,24 @@ def train_preprocess(image, label, use_random_flip):
         - Horizontally flip the image with probability 1/2
         - Apply random brightness and saturation
     """
-#     if use_random_flip:
-#         image = tf.image.random_flip_left_right(image)
+    print(image.get_shape())
+    C1,C2,C3,C4 = tf.split(image,[3,3,3,3],2)
+    image_output = None
+    for i, img in enumerate([C1,C2,C3,C4]):
+        if use_random_flip:
+            img = tf.image.random_flip_left_right(img)
+
+        img = tf.image.random_brightness(img, max_delta=32.0 / 255.0)
+        img = tf.image.random_saturation(img, lower=0.5, upper=1.5)
+
+#         Make sure the image is still in [0, 1]
+        img = tf.clip_by_value(img, 0.0, 1.0)
+        if(image_output != None):
+            image_output = tf.concat([image_output, img], axis=2)
+        else:
+            image_output = img
     
-#     image = tf.image.random_brightness(image, max_delta=32.0 / 255.0)
-#     image = tf.image.random_saturation(image, lower=0.5, upper=1.5)
-
-    # Make sure the image is still in [0, 1]
-#     image = tf.clip_by_value(image, 0.0, 1.0)
-
-    return image, label
+    return image_output, label
 
 
 def input_fn(is_training, filenames, labels, params):

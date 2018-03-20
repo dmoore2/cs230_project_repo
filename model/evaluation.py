@@ -28,6 +28,9 @@ def evaluate_sess(sess, model_spec, num_steps, writer=None, params=None):
     sess.run(model_spec['metrics_init_op'])
 
     # compute metrics over the dataset
+    print('mabye not updating')
+    print(num_steps)
+    print(update_metrics)
     for _ in range(num_steps):
         sess.run(update_metrics)
 
@@ -35,6 +38,7 @@ def evaluate_sess(sess, model_spec, num_steps, writer=None, params=None):
     metrics_values = {k: v[0] for k, v in eval_metrics.items()}
     metrics_val = sess.run(metrics_values)
     metrics_string = " ; ".join("{}: {:05.3f}".format(k, v) for k, v in metrics_val.items())
+    print(metrics_string)
     logging.info("- Eval metrics: " + metrics_string)
 
     # Add summaries manually to writer at global_step_val

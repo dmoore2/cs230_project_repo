@@ -22,7 +22,7 @@ def build_model(is_training, inputs, params):
     images = inputs['images'] 
     
     # images.get_shape().as_list() should equal 
-    # [batch_size,image_height,image_width, layers per image (IE: rgb = 3, rgbd = 4), num of camera angles]
+    # [batch_size,image_height,image_width, layers per image (IE: rgb = 3, rgbd = 4)* num of camera angles]
     
     
     # Ours is hard coded as [batch_size,299,299,12]
@@ -33,10 +33,17 @@ def build_model(is_training, inputs, params):
     
 
     out = images #[batch_size,299,299,12]
+    '''
+    X = Flatten(name="Flatten_Boy")(out)
+    X = Dense(55,activation = 'sigmoid',name = "Dense_Boy")(X)
+    X = Flatten(name="Flatten_MAN")(out)
+    X = Dense(55,activation = 'sigmoid',name = "Dense_Boy")(X)
+    return X
+    '''
     
     #X = tf.Variable(tf.placeholder(tf.int32, shape=(None,width,height,env_rgbd_cam)))
                                    
-    C1,C2,C3,C4 = tf.split(out,[3,3,3,3],3) #A1.get_shape() = (None,width,height,3,1)
+    C1,C2,C3,C4 = tf.split(out,[3,3,3,3],3) #A1.get_shape() = (None,width,height,3)
     C = [C1,C2,C3,C4]
     print("entering enumerate")
     #Apply CNN to each of 4 images
@@ -52,7 +59,7 @@ def build_model(is_training, inputs, params):
                                                     
         C[idx] = V
         
-   
+    #Recombined Images
     #A1.get_shape() = (None,Weight,Height,Layers
     X = tf.concat(C,3) 
     #X.get_shape() = (None,W,H,3*4)
@@ -63,7 +70,8 @@ def build_model(is_training, inputs, params):
     X = MaxPooling2D(pool_size=(4, 4), strides=(4, 4))(X)
     
     X = Flatten()(X)
-    X = Dense(55,activation = 'sigmoid')(X)
+    #Sigmoid is applied inside the loss funciton, thus must be LINEARs, since if we do ReLu it will only get positives (thus sigmoid will result in only 0.5 and up.
+    X = Dense(55,activation = 'linear')(X)
     
                                                 
     return X
@@ -86,7 +94,7 @@ def build_model(is_training, inputs, params):
     C4 has 16 kernels of size 3 × 3 × 3c with stride of 1 pixel. S2 pools the merged features with a stride of 4. Both C5 and C6 have 32 kernels with size of 3 × 3 × 3 with stride of 1 pixel. The dropout is applied to the output of S4 which has been flattened. The fully connected layer FC1 has 32 neurons and FC2 has 3 neurons. The activation of the output layer is softmax function.
     '''
    
-    
+    '''
     return X
     # Define the number of channels of each convolution
     # For each block, we do: 3x3 conv -> batch norm -> relu -> 2x2 maxpool
@@ -117,7 +125,8 @@ def build_model(is_training, inputs, params):
 
     return logits
 
-
+    '''
+    
 def model_fn(mode, inputs, params, reuse=False):
     """Model function defining the graph operations.
 
@@ -140,7 +149,7 @@ def model_fn(mode, inputs, params, reuse=False):
     with tf.variable_scope('model', reuse=reuse):
         # Compute the output distribution of the model and the predictions
         logits = build_model(is_training, inputs, params)
-        predictions = tf.cast(tf.round((tf.nn.sigmoid(logits))),tf.int64)
+        predictions = tf.cast(tf.round((tf.nn.sigmoid(logits))),tf.int64) # either 0's or 1's
        
 
     # Define loss and accuracy
@@ -149,8 +158,14 @@ def model_fn(mode, inputs, params, reuse=False):
     #loss = tf.losses.sigmoid_cross_entropy(multi_class_laxbels=labels, logits=logits)
     
     #loss = tf.nn.weighted_cross_entropy_with_logits(targets = labels,logits = logits,pos_weights tf.divide(tf.reduce_sum(ones(tf.size(labels)),axis =1),tf.reduce_sum(labels,axis=1)))
-    #logits = tf.multiply(logits, tf.cast(labels,tf.float32)) # 
+    
+    #Get max results when all predictions are 1
+    #logits = tf.multiply(logits, tf.cast(labels,tf.float32)) 
+    
     loss = tf.losses.sigmoid_cross_entropy(multi_class_labels=labels, logits=logits)
+
+    #loss = tf.nn.weighted_cross_entropy_with_logits(logits = logits, targets = tf.cast(labels, tf.float32), pos_weight = params.pos_weight) 
+    
     accuracy = tf.reduce_mean(tf.cast(tf.equal(tf.cast(labels,tf.int64), predictions), tf.float32))
 
     # Define training step that minimizes the loss with the Adam optimizer
@@ -174,7 +189,7 @@ def model_fn(mode, inputs, params, reuse=False):
             'recall': tf.metrics.recall(labels=labels, predictions=tf.cast(tf.round((tf.nn.sigmoid(logits))),tf.int64)),
             'loss': tf.metrics.mean(loss)
         }
-
+    
     # Group the update ops for the tf.metrics
     update_metrics_op = tf.group(*[op for _, op in metrics.values()])
 
@@ -183,7 +198,10 @@ def model_fn(mode, inputs, params, reuse=False):
     metrics_init_op = tf.variables_initializer(metric_variables)
 
     # Summaries for training
-    tf.summary.scalar('loss', loss)
+    
+    
+    
+    #tf.summary.scalar('loss', loss)
     tf.summary.scalar('accuracy', accuracy)
     #tf.summary.image('train_image', inputs['images'])
 
@@ -203,6 +221,7 @@ def model_fn(mode, inputs, params, reuse=False):
     # It contains nodes or operations in the graph that will be used for training and evaluation
     model_spec = inputs
     model_spec['variable_init_op'] = tf.global_variables_initializer()
+    #model_spec['variable_init_op'] = tf.initialize_all_variables()
     model_spec["predictions"] = predictions
     model_spec['loss'] = loss
     model_spec['accuracy'] = accuracy

@@ -31,6 +31,7 @@ def train_sess(sess, model_spec, num_steps, writer, params):
     # Load the training dataset into the pipeline and initialize the metrics local variables
     sess.run(model_spec['iterator_init_op'])
     sess.run(model_spec['metrics_init_op'])
+    
 
     # Use tqdm for progress bar
     t = trange(num_steps)
@@ -45,16 +46,20 @@ def train_sess(sess, model_spec, num_steps, writer, params):
         else:
             _, _, loss_val = sess.run([train_op, update_metrics, loss])
         # Log the loss in the tqdm progress bar
-        t.set_postfix(loss='{:05.3f}'.format(loss_val))
+        print(loss_val)
+        #t.set_postfix(loss='{:05.3f}'.format(loss_val))
 
 
     metrics_values = {k: v[0] for k, v in metrics.items()}
     metrics_val = sess.run(metrics_values)
     metrics_string = " ; ".join("{}: {:05.3f}".format(k, v) for k, v in metrics_val.items())
+    print(update_metrics)
     logging.info("- Train metrics: " + metrics_string)
 
 
 def train_and_evaluate(train_model_spec, eval_model_spec, model_dir, params, restore_from=None):
+    
+
     """Train the model and evaluate every epoch.
 
     Args:
@@ -72,8 +77,9 @@ def train_and_evaluate(train_model_spec, eval_model_spec, model_dir, params, res
 
     with tf.Session() as sess:
         # Initialize model variables
-        sess.run(train_model_spec['variable_init_op'])
-
+        #sess.run(train_model_spec['variable_init_op'])
+        sess.run(tf.initialize_all_variables()) #BLACK MAGIC
+        
         # Reload weights from directory if specified
         if restore_from is not None:
             logging.info("Restoring parameters from {}".format(restore_from))
@@ -96,6 +102,7 @@ def train_and_evaluate(train_model_spec, eval_model_spec, model_dir, params, res
 
             # Save weights
             last_save_path = os.path.join(model_dir, 'last_weights', 'after-epoch')
+            print('EPOCH FUCK')
             print(epoch)
             print(last_save_path)
             last_saver.save(sess, last_save_path, global_step=epoch + 1)

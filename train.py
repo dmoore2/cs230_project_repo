@@ -28,7 +28,7 @@ def printExample(label, filename):
     print(" ")
 
 parser = argparse.ArgumentParser()
-parser.add_argument('--model_dir', default='experiments/keras_new',
+parser.add_argument('--model_dir', default='experiments/jrun',
                     help="Experiment directory containing params.json")
 parser.add_argument('--data_dir', default='data/JDP/CS230_Visuomotor_Learning/parser/TeleOpVRSession_2018-03-07_14-38-06_Camera1',
                     help="Directory containing the dataset")
@@ -37,7 +37,7 @@ parser.add_argument('--restore_from', default=None,
 
 
 # CHOOSE THE DATA PERCENTAGE SPLIT, must sum to 1: TRAIN / DEV / TEST
-data_split = [.01, .01, .98] 
+data_split = [.05, .05, .9] 
 
 
 if __name__ == '__main__':
@@ -68,7 +68,7 @@ if __name__ == '__main__':
     path_to_labeling_dict = os.path.join('data/JDP/CS230_Visuomotor_Learning/parser/data', "cam1dict.p")
     
     
-    all_filenames = [os.path.join(train_data_dir, f) for f in os.listdir(train_data_dir)
+    all_filenames = [f for f in os.listdir(train_data_dir)
                        if f.endswith('.jpg') and not f.endswith('Depth.jpg')]
 #     TODO: Shuffle array, probably a good idea, uncomment this later.
 #     random.shuffle(all_filenames)
