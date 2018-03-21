@@ -19,6 +19,7 @@ def evaluate_sess(sess, model_spec, num_steps, writer=None, params=None):
         writer: (tf.summary.FileWriter) writer for summaries. Is None if we don't log anything
         params: (Params) hyperparameters
     """
+    
     update_metrics = model_spec['update_metrics']
     eval_metrics = model_spec['metrics']
     global_step = tf.train.get_global_step()
@@ -28,7 +29,7 @@ def evaluate_sess(sess, model_spec, num_steps, writer=None, params=None):
     sess.run(model_spec['metrics_init_op'])
 
     # compute metrics over the dataset
-    print('mabye not updating')
+    print('in evaluate')
     print(num_steps)
     print(update_metrics)
     for _ in range(num_steps):

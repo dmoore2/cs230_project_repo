@@ -28,7 +28,7 @@ def printExample(label, filename):
     print(" ")
 
 parser = argparse.ArgumentParser()
-parser.add_argument('--model_dir', default='experiments/jrun',
+parser.add_argument('--model_dir', default='experiments/keras_new',
                     help="Experiment directory containing params.json")
 parser.add_argument('--data_dir', default='data/JDP/CS230_Visuomotor_Learning/parser/TeleOpVRSession_2018-03-07_14-38-06_Camera1',
                     help="Directory containing the dataset")
@@ -37,7 +37,7 @@ parser.add_argument('--restore_from', default=None,
 
 
 # CHOOSE THE DATA PERCENTAGE SPLIT, must sum to 1: TRAIN / DEV / TEST
-data_split = [.05, .05, .9] 
+data_split = [.8, 0.1, .1] 
 
 
 if __name__ == '__main__':
@@ -101,22 +101,21 @@ if __name__ == '__main__':
         img_name = eval_filenames[i]
         eval_labels[i][:] = image_to_labels_dict[basename(img_name)];
      
-    for i in range(15):
-        printExample(train_labels[i][:], train_filenames[i])
+
     pos_weights = 0;
     neg_weights = 0;
-    print('finished labeling khot')
+#     print('finished labeling khot')
 #     train_labels = [image_to_labels_dict[basename(img_name)] for img_name in train_filenames]
 #     eval_labels = [image_to_labels_dict[basename(img_name)] for img_name in eval_filenames]
     # Specify the sizes of the dataset we train on and evaluate on
     params.train_size = len(train_filenames)
     params.eval_size = len(eval_filenames)
     # Create the two iterators over the two datasets
-    print('yea boi')
+#     print('yea boi')
     train_inputs = input_fn(True, train_filenames, train_labels, params)
-    print('yea boi')
+#     print('yea boi')
     eval_inputs = input_fn(False, eval_filenames, eval_labels, params)
-    print('didn"t fail on input_fn creation')
+#     print('didn"t fail on input_fn creation')
     # Define the model
     logging.info("Creating the model...")
     train_model_spec = model_fn('train', train_inputs, params)

@@ -482,3 +482,196 @@ Use `tf.global_variables_initializer` instead.
 2018-03-20 02:48:49,294:INFO: - Train metrics: accuracy: 0.864 ; recall: 0.080 ; loss: 0.281
 2018-03-20 02:48:58,576:INFO: - Eval metrics: accuracy: 0.425 ; recall: 0.600 ; loss: 0.704
 2018-03-20 02:48:58,718:INFO: - Found new best accuracy, saving in experiments/jrun/best_weights/after-epoch-10
+2018-03-20 03:38:50,616:INFO: Creating the datasets...
+2018-03-20 03:38:50,886:INFO: Creating the model...
+2018-03-20 03:38:51,255:INFO: Starting training for 10 epoch(s)
+2018-03-20 03:38:51,492:WARNING: From /home/ubuntu/anaconda3/lib/python3.6/site-packages/tensorflow/python/util/tf_should_use.py:107: initialize_all_variables (from tensorflow.python.ops.variables) is deprecated and will be removed after 2017-03-02.
+Instructions for updating:
+Use `tf.global_variables_initializer` instead.
+2018-03-20 03:38:51,857:INFO: Epoch 1/10
+2018-03-20 03:39:17,832:INFO: - Train metrics: accuracy: 0.750 ; recall: 0.190 ; loss: 0.530
+2018-03-20 04:26:33,607:INFO: Creating the datasets...
+2018-03-20 04:26:33,883:INFO: Creating the model...
+2018-03-20 04:26:34,255:INFO: Starting training for 10 epoch(s)
+2018-03-20 04:26:34,493:WARNING: From /home/ubuntu/anaconda3/lib/python3.6/site-packages/tensorflow/python/util/tf_should_use.py:107: initialize_all_variables (from tensorflow.python.ops.variables) is deprecated and will be removed after 2017-03-02.
+Instructions for updating:
+Use `tf.global_variables_initializer` instead.
+2018-03-20 04:26:34,863:INFO: Epoch 1/10
+2018-03-20 04:27:01,079:INFO: - Train metrics: accuracy: 0.735 ; recall: 0.171 ; loss: 0.524
+2018-03-20 04:27:10,478:INFO: - Eval metrics: accuracy: 0.530 ; recall: 0.472 ; loss: 0.690
+2018-03-20 04:27:10,591:INFO: - Found new best accuracy, saving in experiments/jrun/best_weights/after-epoch-1
+2018-03-20 04:27:10,592:INFO: Epoch 2/10
+2018-03-20 04:27:36,459:INFO: - Train metrics: accuracy: 0.857 ; recall: 0.000 ; loss: 0.444
+2018-03-20 04:27:45,689:INFO: - Eval metrics: accuracy: 0.530 ; recall: 0.472 ; loss: 0.690
+2018-03-20 04:27:45,789:INFO: - Found new best accuracy, saving in experiments/jrun/best_weights/after-epoch-2
+2018-03-20 04:27:45,789:INFO: Epoch 3/10
+2018-03-20 04:28:11,856:INFO: - Train metrics: accuracy: 0.856 ; recall: 0.004 ; loss: 0.395
+2018-03-20 04:28:21,099:INFO: - Eval metrics: accuracy: 0.530 ; recall: 0.472 ; loss: 0.690
+2018-03-20 04:28:21,238:INFO: - Found new best accuracy, saving in experiments/jrun/best_weights/after-epoch-3
+2018-03-20 04:28:21,239:INFO: Epoch 4/10
+2018-03-20 04:28:47,089:INFO: - Train metrics: accuracy: 0.856 ; recall: 0.001 ; loss: 0.383
+2018-03-20 04:28:56,327:INFO: - Eval metrics: accuracy: 0.530 ; recall: 0.472 ; loss: 0.690
+2018-03-20 04:28:56,425:INFO: - Found new best accuracy, saving in experiments/jrun/best_weights/after-epoch-4
+2018-03-20 04:28:56,426:INFO: Epoch 5/10
+2018-03-20 04:29:22,890:INFO: - Train metrics: accuracy: 0.857 ; recall: 0.000 ; loss: 0.368
+2018-03-20 04:29:32,126:INFO: - Eval metrics: accuracy: 0.530 ; recall: 0.472 ; loss: 0.690
+2018-03-20 04:29:32,224:INFO: - Found new best accuracy, saving in experiments/jrun/best_weights/after-epoch-5
+2018-03-20 04:29:32,225:INFO: Epoch 6/10
+2018-03-20 04:29:57,985:INFO: - Train metrics: accuracy: 0.857 ; recall: 0.000 ; loss: 0.355
+2018-03-20 04:30:07,264:INFO: - Eval metrics: accuracy: 0.530 ; recall: 0.472 ; loss: 0.690
+2018-03-20 04:30:07,362:INFO: - Found new best accuracy, saving in experiments/jrun/best_weights/after-epoch-6
+2018-03-20 04:30:07,362:INFO: Epoch 7/10
+2018-03-20 04:30:33,219:INFO: - Train metrics: accuracy: 0.857 ; recall: 0.005 ; loss: 0.347
+2018-03-20 04:30:42,520:INFO: - Eval metrics: accuracy: 0.530 ; recall: 0.472 ; loss: 0.690
+2018-03-20 04:30:42,620:INFO: - Found new best accuracy, saving in experiments/jrun/best_weights/after-epoch-7
+2018-03-20 04:30:42,621:INFO: Epoch 8/10
+2018-03-20 04:31:08,471:INFO: - Train metrics: accuracy: 0.860 ; recall: 0.032 ; loss: 0.325
+2018-03-20 04:31:17,762:INFO: - Eval metrics: accuracy: 0.530 ; recall: 0.472 ; loss: 0.690
+2018-03-20 04:31:17,861:INFO: - Found new best accuracy, saving in experiments/jrun/best_weights/after-epoch-8
+2018-03-20 04:31:17,862:INFO: Epoch 9/10
+2018-03-20 04:31:43,641:INFO: - Train metrics: accuracy: 0.861 ; recall: 0.042 ; loss: 0.302
+2018-03-20 04:31:52,924:INFO: - Eval metrics: accuracy: 0.530 ; recall: 0.472 ; loss: 0.690
+2018-03-20 04:31:53,023:INFO: - Found new best accuracy, saving in experiments/jrun/best_weights/after-epoch-9
+2018-03-20 04:31:53,023:INFO: Epoch 10/10
+2018-03-20 04:32:19,434:INFO: - Train metrics: accuracy: 0.865 ; recall: 0.063 ; loss: 0.283
+2018-03-20 04:32:28,715:INFO: - Eval metrics: accuracy: 0.530 ; recall: 0.472 ; loss: 0.690
+2018-03-20 04:32:28,861:INFO: - Found new best accuracy, saving in experiments/jrun/best_weights/after-epoch-10
+2018-03-20 04:37:44,406:INFO: Creating the datasets...
+2018-03-20 04:37:58,800:INFO: Creating the datasets...
+2018-03-20 04:37:59,080:INFO: Creating the model...
+2018-03-20 04:37:59,458:INFO: Starting training for 10 epoch(s)
+2018-03-20 04:37:59,698:WARNING: From /home/ubuntu/anaconda3/lib/python3.6/site-packages/tensorflow/python/util/tf_should_use.py:107: initialize_all_variables (from tensorflow.python.ops.variables) is deprecated and will be removed after 2017-03-02.
+Instructions for updating:
+Use `tf.global_variables_initializer` instead.
+2018-03-20 04:38:00,073:INFO: Epoch 1/10
+2018-03-20 04:38:05,433:INFO: - Train metrics: accuracy: 0.576 ; recall: 0.392 ; loss: 0.684
+2018-03-20 04:38:07,381:INFO: - Eval metrics: accuracy: 0.512 ; recall: 0.404 ; loss: 0.696
+2018-03-20 04:38:07,494:INFO: - Found new best accuracy, saving in experiments/jrun/best_weights/after-epoch-1
+2018-03-20 04:38:07,495:INFO: Epoch 2/10
+2018-03-20 04:38:13,223:INFO: - Train metrics: accuracy: 0.857 ; recall: 0.013 ; loss: 0.446
+2018-03-20 04:38:15,091:INFO: - Eval metrics: accuracy: 0.512 ; recall: 0.404 ; loss: 0.696
+2018-03-20 04:38:15,193:INFO: - Found new best accuracy, saving in experiments/jrun/best_weights/after-epoch-2
+2018-03-20 04:38:15,193:INFO: Epoch 3/10
+2018-03-20 04:38:20,361:INFO: - Train metrics: accuracy: 0.856 ; recall: 0.006 ; loss: 0.416
+2018-03-20 04:38:22,235:INFO: - Eval metrics: accuracy: 0.512 ; recall: 0.404 ; loss: 0.696
+2018-03-20 04:38:22,384:INFO: - Found new best accuracy, saving in experiments/jrun/best_weights/after-epoch-3
+2018-03-20 04:38:22,385:INFO: Epoch 4/10
+2018-03-20 04:38:27,572:INFO: - Train metrics: accuracy: 0.858 ; recall: 0.063 ; loss: 0.417
+2018-03-20 04:38:29,443:INFO: - Eval metrics: accuracy: 0.512 ; recall: 0.404 ; loss: 0.696
+2018-03-20 04:38:29,544:INFO: - Found new best accuracy, saving in experiments/jrun/best_weights/after-epoch-4
+2018-03-20 04:38:29,544:INFO: Epoch 5/10
+2018-03-20 04:38:34,755:INFO: - Train metrics: accuracy: 0.858 ; recall: 0.063 ; loss: 0.371
+2018-03-20 04:38:36,619:INFO: - Eval metrics: accuracy: 0.512 ; recall: 0.404 ; loss: 0.696
+2018-03-20 04:38:36,724:INFO: - Found new best accuracy, saving in experiments/jrun/best_weights/after-epoch-5
+2018-03-20 04:38:36,725:INFO: Epoch 6/10
+2018-03-20 04:38:41,958:INFO: - Train metrics: accuracy: 0.868 ; recall: 0.101 ; loss: 0.335
+2018-03-20 04:38:43,867:INFO: - Eval metrics: accuracy: 0.512 ; recall: 0.404 ; loss: 0.696
+2018-03-20 04:38:43,968:INFO: - Found new best accuracy, saving in experiments/jrun/best_weights/after-epoch-6
+2018-03-20 04:38:43,969:INFO: Epoch 7/10
+2018-03-20 04:38:49,174:INFO: - Train metrics: accuracy: 0.875 ; recall: 0.152 ; loss: 0.325
+2018-03-20 04:38:51,091:INFO: - Eval metrics: accuracy: 0.512 ; recall: 0.404 ; loss: 0.696
+2018-03-20 04:38:51,192:INFO: - Found new best accuracy, saving in experiments/jrun/best_weights/after-epoch-7
+2018-03-20 04:38:51,193:INFO: Epoch 8/10
+2018-03-20 04:38:56,381:INFO: - Train metrics: accuracy: 0.876 ; recall: 0.152 ; loss: 0.318
+2018-03-20 04:38:58,295:INFO: - Eval metrics: accuracy: 0.512 ; recall: 0.404 ; loss: 0.696
+2018-03-20 04:38:58,397:INFO: - Found new best accuracy, saving in experiments/jrun/best_weights/after-epoch-8
+2018-03-20 04:38:58,398:INFO: Epoch 9/10
+2018-03-20 04:39:03,588:INFO: - Train metrics: accuracy: 0.863 ; recall: 0.051 ; loss: 0.321
+2018-03-20 04:39:05,610:INFO: - Eval metrics: accuracy: 0.512 ; recall: 0.404 ; loss: 0.696
+2018-03-20 04:39:05,714:INFO: - Found new best accuracy, saving in experiments/jrun/best_weights/after-epoch-9
+2018-03-20 04:39:05,714:INFO: Epoch 10/10
+2018-03-20 04:39:10,955:INFO: - Train metrics: accuracy: 0.876 ; recall: 0.158 ; loss: 0.291
+2018-03-20 04:39:13,011:INFO: - Eval metrics: accuracy: 0.512 ; recall: 0.404 ; loss: 0.696
+2018-03-20 04:39:13,153:INFO: - Found new best accuracy, saving in experiments/jrun/best_weights/after-epoch-10
+2018-03-20 04:40:10,063:INFO: Creating the datasets...
+2018-03-20 04:40:10,339:INFO: Creating the model...
+2018-03-20 04:40:10,711:INFO: Starting training for 10 epoch(s)
+2018-03-20 04:40:10,946:WARNING: From /home/ubuntu/anaconda3/lib/python3.6/site-packages/tensorflow/python/util/tf_should_use.py:107: initialize_all_variables (from tensorflow.python.ops.variables) is deprecated and will be removed after 2017-03-02.
+Instructions for updating:
+Use `tf.global_variables_initializer` instead.
+2018-03-20 04:40:11,319:INFO: Epoch 1/10
+2018-03-20 04:40:16,760:INFO: - Train metrics: accuracy: 0.490 ; recall: 0.475 ; loss: 0.694
+2018-03-20 04:40:18,705:INFO: - Eval metrics: accuracy: 0.550 ; recall: 0.432 ; loss: 0.684
+2018-03-20 04:40:18,821:INFO: - Found new best accuracy, saving in experiments/jrun/best_weights/after-epoch-1
+2018-03-20 04:40:18,822:INFO: Epoch 2/10
+2018-03-20 04:40:24,082:INFO: - Train metrics: accuracy: 0.856 ; recall: 0.000 ; loss: 0.461
+2018-03-20 04:40:25,968:INFO: - Eval metrics: accuracy: 0.550 ; recall: 0.432 ; loss: 0.684
+2018-03-20 04:40:26,071:INFO: - Found new best accuracy, saving in experiments/jrun/best_weights/after-epoch-2
+2018-03-20 04:40:26,072:INFO: Epoch 3/10
+2018-03-20 04:40:31,342:INFO: - Train metrics: accuracy: 0.856 ; recall: 0.000 ; loss: 0.445
+2018-03-20 04:40:33,206:INFO: - Eval metrics: accuracy: 0.550 ; recall: 0.432 ; loss: 0.684
+2018-03-20 04:40:33,359:INFO: - Found new best accuracy, saving in experiments/jrun/best_weights/after-epoch-3
+2018-03-20 04:40:33,360:INFO: Epoch 4/10
+2018-03-20 04:40:38,594:INFO: - Train metrics: accuracy: 0.858 ; recall: 0.063 ; loss: 0.414
+2018-03-20 04:40:40,466:INFO: - Eval metrics: accuracy: 0.550 ; recall: 0.432 ; loss: 0.684
+2018-03-20 04:40:40,570:INFO: - Found new best accuracy, saving in experiments/jrun/best_weights/after-epoch-4
+2018-03-20 04:40:40,571:INFO: Epoch 5/10
+2018-03-20 04:40:45,800:INFO: - Train metrics: accuracy: 0.860 ; recall: 0.095 ; loss: 0.352
+2018-03-20 04:40:47,680:INFO: - Eval metrics: accuracy: 0.550 ; recall: 0.432 ; loss: 0.684
+2018-03-20 04:40:47,783:INFO: - Found new best accuracy, saving in experiments/jrun/best_weights/after-epoch-5
+2018-03-20 04:40:47,784:INFO: Epoch 6/10
+2018-03-20 04:40:53,043:INFO: - Train metrics: accuracy: 0.866 ; recall: 0.139 ; loss: 0.349
+2018-03-20 04:40:55,017:INFO: - Eval metrics: accuracy: 0.550 ; recall: 0.432 ; loss: 0.684
+2018-03-20 04:40:55,122:INFO: - Found new best accuracy, saving in experiments/jrun/best_weights/after-epoch-6
+2018-03-20 04:40:55,122:INFO: Epoch 7/10
+2018-03-20 04:41:00,344:INFO: - Train metrics: accuracy: 0.871 ; recall: 0.146 ; loss: 0.339
+2018-03-20 04:41:02,285:INFO: - Eval metrics: accuracy: 0.550 ; recall: 0.432 ; loss: 0.684
+2018-03-20 04:41:02,389:INFO: - Found new best accuracy, saving in experiments/jrun/best_weights/after-epoch-7
+2018-03-20 04:41:02,390:INFO: Epoch 8/10
+2018-03-20 04:41:07,618:INFO: - Train metrics: accuracy: 0.864 ; recall: 0.051 ; loss: 0.322
+2018-03-20 04:41:09,615:INFO: - Eval metrics: accuracy: 0.550 ; recall: 0.432 ; loss: 0.684
+2018-03-20 04:41:09,730:INFO: - Found new best accuracy, saving in experiments/jrun/best_weights/after-epoch-8
+2018-03-20 04:41:09,730:INFO: Epoch 9/10
+2018-03-20 04:41:15,377:INFO: - Train metrics: accuracy: 0.864 ; recall: 0.051 ; loss: 0.306
+2018-03-20 04:41:17,305:INFO: - Eval metrics: accuracy: 0.550 ; recall: 0.432 ; loss: 0.684
+2018-03-20 04:41:17,409:INFO: - Found new best accuracy, saving in experiments/jrun/best_weights/after-epoch-9
+2018-03-20 04:41:17,410:INFO: Epoch 10/10
+2018-03-20 04:41:22,615:INFO: - Train metrics: accuracy: 0.876 ; recall: 0.139 ; loss: 0.281
+2018-03-20 04:41:24,530:INFO: - Eval metrics: accuracy: 0.550 ; recall: 0.432 ; loss: 0.684
+2018-03-20 04:41:24,695:INFO: - Found new best accuracy, saving in experiments/jrun/best_weights/after-epoch-10
+2018-03-20 04:41:45,153:INFO: Creating the datasets...
+2018-03-20 04:41:45,435:INFO: Creating the model...
+2018-03-20 04:41:45,811:INFO: Starting training for 10 epoch(s)
+2018-03-20 04:41:46,048:WARNING: From /home/ubuntu/anaconda3/lib/python3.6/site-packages/tensorflow/python/util/tf_should_use.py:107: initialize_all_variables (from tensorflow.python.ops.variables) is deprecated and will be removed after 2017-03-02.
+Instructions for updating:
+Use `tf.global_variables_initializer` instead.
+2018-03-20 04:41:46,416:INFO: Epoch 1/10
+2018-03-20 04:41:51,792:INFO: - Train metrics: accuracy: 0.489 ; recall: 0.462 ; loss: 0.696
+2018-03-20 04:41:53,751:INFO: - Eval metrics: accuracy: 0.456 ; recall: 0.562 ; loss: 0.699
+2018-03-20 04:41:53,867:INFO: - Found new best accuracy, saving in experiments/jrun/best_weights/after-epoch-1
+2018-03-20 04:41:53,868:INFO: Epoch 2/10
+2018-03-20 04:41:59,114:INFO: - Train metrics: accuracy: 0.856 ; recall: 0.000 ; loss: 0.556
+2018-03-20 04:42:00,989:INFO: - Eval metrics: accuracy: 0.456 ; recall: 0.562 ; loss: 0.699
+2018-03-20 04:42:01,089:INFO: - Found new best accuracy, saving in experiments/jrun/best_weights/after-epoch-2
+2018-03-20 04:42:01,089:INFO: Epoch 3/10
+2018-03-20 04:42:06,281:INFO: - Train metrics: accuracy: 0.856 ; recall: 0.000 ; loss: 0.404
+2018-03-20 04:42:08,157:INFO: - Eval metrics: accuracy: 0.456 ; recall: 0.562 ; loss: 0.699
+2018-03-20 04:42:08,310:INFO: - Found new best accuracy, saving in experiments/jrun/best_weights/after-epoch-3
+2018-03-20 04:42:08,311:INFO: Epoch 4/10
+2018-03-20 04:42:13,508:INFO: - Train metrics: accuracy: 0.856 ; recall: 0.000 ; loss: 0.444
+2018-03-20 04:42:15,383:INFO: - Eval metrics: accuracy: 0.456 ; recall: 0.562 ; loss: 0.699
+2018-03-20 04:42:15,482:INFO: - Found new best accuracy, saving in experiments/jrun/best_weights/after-epoch-4
+2018-03-20 04:42:15,483:INFO: Epoch 5/10
+2018-03-20 04:42:20,702:INFO: - Train metrics: accuracy: 0.859 ; recall: 0.044 ; loss: 0.408
+2018-03-20 04:42:22,584:INFO: - Eval metrics: accuracy: 0.456 ; recall: 0.562 ; loss: 0.699
+2018-03-20 04:42:22,689:INFO: - Found new best accuracy, saving in experiments/jrun/best_weights/after-epoch-5
+2018-03-20 04:42:22,689:INFO: Epoch 6/10
+2018-03-20 04:42:27,909:INFO: - Train metrics: accuracy: 0.863 ; recall: 0.095 ; loss: 0.352
+2018-03-20 04:42:29,827:INFO: - Eval metrics: accuracy: 0.456 ; recall: 0.562 ; loss: 0.699
+2018-03-20 04:42:29,927:INFO: - Found new best accuracy, saving in experiments/jrun/best_weights/after-epoch-6
+2018-03-20 04:42:29,927:INFO: Epoch 7/10
+2018-03-20 04:42:35,133:INFO: - Train metrics: accuracy: 0.870 ; recall: 0.158 ; loss: 0.327
+2018-03-20 04:42:37,051:INFO: - Eval metrics: accuracy: 0.456 ; recall: 0.562 ; loss: 0.699
+2018-03-20 04:42:37,151:INFO: - Found new best accuracy, saving in experiments/jrun/best_weights/after-epoch-7
+2018-03-20 04:42:37,152:INFO: Epoch 8/10
+2018-03-20 04:42:42,351:INFO: - Train metrics: accuracy: 0.876 ; recall: 0.234 ; loss: 0.327
+2018-03-20 04:42:44,273:INFO: - Eval metrics: accuracy: 0.456 ; recall: 0.562 ; loss: 0.699
+2018-03-20 04:42:44,378:INFO: - Found new best accuracy, saving in experiments/jrun/best_weights/after-epoch-8
+2018-03-20 04:42:44,378:INFO: Epoch 9/10
+2018-03-20 04:42:49,589:INFO: - Train metrics: accuracy: 0.881 ; recall: 0.209 ; loss: 0.314
+2018-03-20 04:42:51,524:INFO: - Eval metrics: accuracy: 0.456 ; recall: 0.562 ; loss: 0.699
+2018-03-20 04:42:51,625:INFO: - Found new best accuracy, saving in experiments/jrun/best_weights/after-epoch-9
+2018-03-20 04:42:51,625:INFO: Epoch 10/10
+2018-03-20 04:42:56,881:INFO: - Train metrics: accuracy: 0.868 ; recall: 0.089 ; loss: 0.295
+2018-03-20 04:42:58,801:INFO: - Eval metrics: accuracy: 0.456 ; recall: 0.562 ; loss: 0.699
+2018-03-20 04:42:58,944:INFO: - Found new best accuracy, saving in experiments/jrun/best_weights/after-epoch-10

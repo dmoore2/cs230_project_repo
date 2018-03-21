@@ -39,39 +39,101 @@ def build_model(is_training, inputs, params):
     X = Flatten(name="Flatten_MAN")(out)
     X = Dense(55,activation = 'sigmoid',name = "Dense_Boy")(X)
     return X
-    '''
     
-    #X = tf.Variable(tf.placeholder(tf.int32, shape=(None,width,height,env_rgbd_cam)))
-                                   
-    C1,C2,C3,C4 = tf.split(out,[3,3,3,3],3) #A1.get_shape() = (None,width,height,3)
+    =======
+    
+      C1,C2,C3,C4 = tf.split(out,[3,3,3,3],3) #A1.get_shape() = (None,width,height,3)
     C = [C1,C2,C3,C4]
-    print("entering enumerate")
+    
     #Apply CNN to each of 4 images
     for idx, V in enumerate(C):
         #V = tf.squeeze(V) #V.get_shape(): (None,width,height,3,1) -> (None,width,height,3)
         
                                                     
-        print(V.get_shape().as_list())
+#         print(V.get_shape().as_list())
         V = Conv2D(32, input_shape = (V.get_shape()), activation='relu',kernel_size=(7,7), strides=(1, 1))(V)
         V = MaxPooling2D(pool_size=(2, 2), strides=(2, 2))(V)
+        V = Conv2D(32, input_shape = (V.get_shape()), activation='relu',kernel_size=(7,7), strides=(1, 1))(V)
+        V = MaxPooling2D(pool_size=(2, 2), strides=(2, 2))(V)
+        
+                                                    
+        C[idx] = V
+    
+    X = tf.concat(C,3) 
+    
+                                                
+                                    
+    X = Conv2D(16, input_shape = (X.get_shape()), activation='relu',kernel_size=(3,3), strides=(1, 1))(X)
+    X = MaxPooling2D(pool_size=(4, 4), strides=(4, 4))(X)
+    X = Conv2D(16, input_shape = (X.get_shape()), activation='relu',kernel_size=(3,3), strides=(1, 1))(X)
+    X = MaxPooling2D(pool_size=(4, 4), strides=(4, 4))(X)
+    X = Flatten()(X)
+    #Sigmoid is applied inside the loss funciton, thus must be LINEARs, since if we do ReLu it will only get positives (thus sigmoid will result in only 0.5 and up.
+    X = Dense(124,activation = 'relu')(X)
+    X = Dense(55,activation = 'linear')(X)
+    
+    ========
+    
+    
+    
+    '''
+    
+    #X = tf.Variable(tf.placeholder(tf.int32, shape=(None,width,height,env_rgbd_cam)))
+                       
+    C1,C2,C3,C4 = tf.split(out,[3,3,3,3],3) #A1.get_shape() = (None,width,height,3)
+    C = [C1,C2,C3,C4]
+    
+    print('image dims')
+    print(C1.get_shape().as_list())
+    #Apply CNN to each of 4 images
+    for idx, V in enumerate(C):
+        #V = tf.squeeze(V) #V.get_shape(): (None,width,height,3,1) -> (None,width,height,3)
+        
+                                                    
+        V = Conv2D(32, input_shape = (V.get_shape()), activation='relu',kernel_size=(7,7), strides=(1, 1))(V)
+        print('C1 part 1 dims')
+        print(V.get_shape().as_list())
+        V = MaxPooling2D(pool_size=(2, 2), strides=(2, 2))(V)
+        print('C1 part 1 max pooling dims')
+        print(V.get_shape().as_list())
+        V = Conv2D(32, input_shape = (V.get_shape()), activation='relu',kernel_size=(7,7), strides=(1, 1))(V)
+        print('C1 part 2 dims')
+        print(V.get_shape().as_list())
+        V = MaxPooling2D(pool_size=(2, 2), strides=(2, 2))(V)
+        print('C1 part 2 max pooling dims')
+        print(V.get_shape().as_list())
         
         
                                                     
         C[idx] = V
-        
-    #Recombined Images
-    #A1.get_shape() = (None,Weight,Height,Layers
-    X = tf.concat(C,3) 
-    #X.get_shape() = (None,W,H,3*4)
     
+    X = tf.concat(C,3) 
+    print('concatted C1-4 shape')
+    print(X.get_shape().as_list())
                                                 
                                     
-    X = Conv2D(16, input_shape = (X.get_shape()), activation='relu',kernel_size=(3,3), strides=(1, 1))(V)
+    X = Conv2D(16, input_shape = (X.get_shape()), activation='relu',kernel_size=(3,3), strides=(1, 1))(X)
+    print('conv2D layer dims')
+    print(X.get_shape().as_list())
     X = MaxPooling2D(pool_size=(4, 4), strides=(4, 4))(X)
-    
+    print('max pooling after prev layer dims')
+    print(X.get_shape().as_list())
+    X = Conv2D(16, input_shape = (X.get_shape()), activation='relu',kernel_size=(3,3), strides=(1, 1))(X)
+    print('conv2D part 2 layer dims')
+    print(X.get_shape().as_list())
+    X = MaxPooling2D(pool_size=(4, 4), strides=(4, 4))(X)
+    print('max pooling after prev layer dims')
+    print(X.get_shape().as_list())
     X = Flatten()(X)
+    print('flattened layer dims')
+    print(X.get_shape().as_list())
     #Sigmoid is applied inside the loss funciton, thus must be LINEARs, since if we do ReLu it will only get positives (thus sigmoid will result in only 0.5 and up.
+    X = Dense(128,activation = 'relu')(X)
+    print('relu activation dense layer dims')
+    print(X.get_shape().as_list())
     X = Dense(55,activation = 'linear')(X)
+    print('linear activation dense layer at end dims')
+    print(X.get_shape().as_list())
     
                                                 
     return X
@@ -162,9 +224,9 @@ def model_fn(mode, inputs, params, reuse=False):
     #Get max results when all predictions are 1
     #logits = tf.multiply(logits, tf.cast(labels,tf.float32)) 
     
-    loss = tf.losses.sigmoid_cross_entropy(multi_class_labels=labels, logits=logits)
+    #loss = tf.losses.sigmoid_cross_entropy(multi_class_labels=labels, logits=logits)
 
-    #loss = tf.nn.weighted_cross_entropy_with_logits(logits = logits, targets = tf.cast(labels, tf.float32), pos_weight = params.pos_weight) 
+    loss = tf.nn.weighted_cross_entropy_with_logits(logits = logits, targets = tf.cast(labels, tf.float32), pos_weight = params.pos_weight) 
     
     accuracy = tf.reduce_mean(tf.cast(tf.equal(tf.cast(labels,tf.int64), predictions), tf.float32))
 
